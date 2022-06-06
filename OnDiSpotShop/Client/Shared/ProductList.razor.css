@@ -7,13 +7,17 @@
 }
 
     .media-img:hover {
-        transform: scale(1.7);
+        transform: scale(1.5);
     }
 
     .media-img-wrapper {
         width: 200px;
         text-align: center;
     }
+
+.price {
+    color: green;
+}
 
 .media {
     display: flex;
@@ -22,10 +26,6 @@
 
 .media-body {
     flex: 1;
-}
-
-.price {
-    color: forestgreen;
 }
 
 @media (max-width: 1024.98px){

@@ -8,17 +8,52 @@ namespace OnDiSpotShop.Server.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly DataContext context;
+        private readonly IProductService productService;
 
-        public ProductController(DataContext context)
+        public ProductController(IProductService productService)
         {
-            this.context = context;
+            this.productService = productService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProduct()
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
-            var products = await context.Products.ToListAsync();
-            return Ok(products);
+            var result = await productService.GetProductsAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("{productId}")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProduct(int productId)
+        {
+            var result = await productService.GetProductAsync(productId);
+            return Ok(result);
+        }
+
+        [HttpGet("category/{categoryUrl}")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProductsByCategory(string categoryUrl)
+        {
+            var result = await productService.GetProductsByCategory(categoryUrl);
+            return Ok(result);
+        }
+
+        [HttpGet("search/{searchText}")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> SearchProducts(string searchText)
+        {
+            var result = await productService.SearchProducts(searchText);
+            return Ok(result);
+        }
+
+        [HttpGet("searchsuggestions/{searchText}")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProductSearchSuggestions(string searchText)
+        {
+            var result = await productService.GetProductSearchSuggestions(searchText);
+            return Ok(result);
+        }
+
+        [HttpGet("featured")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetFeaturedProducts()
+        {
+            var result = await productService.GetFeaturedProducts();
+            return Ok(result);
         }
     }
 }

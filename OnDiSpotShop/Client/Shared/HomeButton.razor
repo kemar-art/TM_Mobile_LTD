@@ -1,0 +1,13 @@
+﻿@inject NavigationManager navigate
+
+<button @onclick="GoToHome" class="btn btn-outline-primary home-button">
+    Kemar's Shop
+</button>
+
+
+@code {
+    private void GoToHome()
+    {
+        navigate.NavigateTo("");
+    }
+}

@@ -1,5 +1,37 @@
 ﻿@page "/"
+@page "/search/{searchText}"
+@page "/{categoryUrl}"
+@inject IProductService Productservice
 
-<PageTitle>On Di Spot Shop</PageTitle>
+<PageTitle>Kemar's Shop'</PageTitle>
 
-<ProductList />
+@if (searchText == null && CategoryUrl == null)
+{
+    <FeaturedProducts />
+}
+else
+{
+    <ProductList />
+}
+
+
+
+@code {
+    [Parameter]
+    public string? CategoryUrl { get; set; } = null;
+
+    [Parameter]
+    public string? searchText { get; set; } = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (searchText != null)
+        {
+            await Productservice.SearchProducts(searchText);
+        }
+        else
+        {
+            await Productservice.GetProducts(CategoryUrl);
+        }
+    }
+}

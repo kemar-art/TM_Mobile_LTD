@@ -1,6 +1,8 @@
 global using OnDiSpotShop.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using OnDiSpotShop.Server.Data;
+global using OnDiSpotShop.Server.Services.ProductServices;
+global using OnDiSpotShop.Server.Services.CategoryServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,11 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+
 
 var app = builder.Build();
 
