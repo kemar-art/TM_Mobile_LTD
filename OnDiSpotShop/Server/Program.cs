@@ -3,6 +3,7 @@ global using Microsoft.EntityFrameworkCore;
 global using OnDiSpotShop.Server.Data;
 global using OnDiSpotShop.Server.Services.ProductServices;
 global using OnDiSpotShop.Server.Services.CategoryServices;
+global using OnDiSpotShop.Shared.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 

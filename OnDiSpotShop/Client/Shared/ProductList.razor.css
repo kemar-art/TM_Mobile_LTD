@@ -15,8 +15,9 @@
         text-align: center;
     }
 
-.price {
-    color: green;
+.page-selection {
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .media {

@@ -29,7 +29,18 @@ else
             </div>
         </li>
     }
-</ul>
+    </ul>
+
+    for (var i = 1; i <= ProductService.PageCount; i++)
+    {
+        <a class="btn
+            @(i == ProductService.CurrentPage ? "btn-dark" : "btn-online-dark")
+            page-selection"
+            href="/search/@ProductService.LastSearchText/@i"
+            >
+            @i
+        </a>
+    }
 }
 
 @code {
