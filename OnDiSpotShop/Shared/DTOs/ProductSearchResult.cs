@@ -1,4 +1,6 @@
-﻿namespace OnDiSpotShop.Shared.DTOs
+﻿using OnDiSpotShop.Shared.Modles;
+
+namespace OnDiSpotShop.Shared.DTOs
 {
     public class ProductSearchResult
     {

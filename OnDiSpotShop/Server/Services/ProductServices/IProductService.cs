@@ -1,6 +1,4 @@
-﻿
-
-namespace OnDiSpotShop.Server.Services.ProductServices
+﻿namespace OnDiSpotShop.Server.Services.ProductServices
 {
     public interface IProductService
     {

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnDiSpotShop.Shared
+namespace OnDiSpotShop.Shared.Modles
 {
     public class ProductType
     {
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

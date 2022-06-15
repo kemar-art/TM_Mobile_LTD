@@ -6,7 +6,7 @@ global using OnDiSpotShop.Server.Services.CategoryServices;
 global using OnDiSpotShop.Shared.DTOs;
 global using OnDiSpotShop.Shared.Modles;
 global using OnDiSpotShop.Server.Services.CartServices;
-
+global using OnDiSpotShop.Server.Services.AuthServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +27,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 
 var app = builder.Build();

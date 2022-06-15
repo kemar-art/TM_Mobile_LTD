@@ -64,7 +64,7 @@ else
         message = "Loading product...";
 
         var result = await ProductService.GetProduct(Id);
-        if (!result.Sucess)
+        if (!result.Success)
         {
             message = result.Message;
         }

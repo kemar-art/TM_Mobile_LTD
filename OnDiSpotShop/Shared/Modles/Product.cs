@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnDiSpotShop.Shared
+namespace OnDiSpotShop.Shared.Modles
 {
     public class Product
     {
