@@ -16,6 +16,7 @@ namespace OnDiSpotShop.Server.Services.AuthServices
             this.config = config;
         }
 
+
         public async Task<ServiceResponse<string>> Login(string email, string password)
         {
             var response = new ServiceResponse<string>();
@@ -96,6 +97,7 @@ namespace OnDiSpotShop.Server.Services.AuthServices
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Email)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8
@@ -112,5 +114,32 @@ namespace OnDiSpotShop.Server.Services.AuthServices
 
             return jwt;
         }
+
+        public async Task<ServiceResponse<bool>> ChangePassword(int userId, string newPassword)
+        {
+            var user = await context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                return new ServiceResponse<bool>
+                {
+                    Success = false,
+                    Message = "User not found."
+                };
+            }
+
+            CreatePasswordHash(newPassword, out byte[] passwordHash, out byte[] passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            await context.SaveChangesAsync();
+
+            return new ServiceResponse<bool> { Data = true, Message = "Password has been changed." };
+        }
+
+        /*public async Task<User> GetUserByEmail(string email)
+        {
+            return await context.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
+        }*/
     }
 }
