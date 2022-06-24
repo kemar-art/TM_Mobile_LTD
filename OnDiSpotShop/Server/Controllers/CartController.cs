@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace OnDiSpotShop.Server.Controllers
 {
@@ -18,6 +19,20 @@ namespace OnDiSpotShop.Server.Controllers
         {
             var result = await cartService.GetCartProducts(cartItems);
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> StoreCartItems(List<CartItem> cartItems)
+        {
+            //var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var result = await cartService.StoreCartItems(cartItems);
+            return Ok(result);
+        }
+
+        [HttpGet("count")]
+        public async Task<ActionResult<ServiceResponse<int>>> GetCartItemsCount()
+        {
+            return await cartService.GetCartItemsCount();
         }
     }
 }
