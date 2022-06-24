@@ -67,13 +67,18 @@ namespace OnDiSpotShop.Server.Services.CartServices
             context.CartItems.AddRange(cartItems);
             await context.SaveChangesAsync();
 
-            return await GetCartProducts(await context.CartItems.Where(ci => ci.UserId == GetUserId()).ToListAsync());
+            return await GetDbCartProducts();
         }
 
         public async Task<ServiceResponse<int>> GetCartItemsCount()
         {
             var count = (await context.CartItems.Where(ci => ci.UserId == GetUserId()).ToListAsync()).Count;
             return new ServiceResponse<int> { Data = count };
+        }
+
+        public async Task<ServiceResponse<List<CartProductResponse>>> GetDbCartProducts()
+        {
+            return await GetCartProducts(await context.CartItems.Where(ci => ci.UserId == GetUserId()).ToListAsync());
         }
     }
 }

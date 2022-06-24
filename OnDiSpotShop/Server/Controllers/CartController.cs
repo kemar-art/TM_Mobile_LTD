@@ -34,5 +34,12 @@ namespace OnDiSpotShop.Server.Controllers
         {
             return await cartService.GetCartItemsCount();
         }
+
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> GetDbCartProducts()
+        {
+            var result = await cartService.GetDbCartProducts();
+            return Ok(result);
+        }
     }
 }
