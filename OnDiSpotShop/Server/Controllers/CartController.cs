@@ -24,8 +24,28 @@ namespace OnDiSpotShop.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<ServiceResponse<List<CartProductResponse>>>> StoreCartItems(List<CartItem> cartItems)
         {
-            //var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             var result = await cartService.StoreCartItems(cartItems);
+            return Ok(result);
+        }
+
+        [HttpPost("add")]
+        public async Task<ActionResult<ServiceResponse<bool>>> AddToCart(CartItem cartItem)
+        {
+            var result = await cartService.AddToCart(cartItem);
+            return Ok(result);
+        }
+
+        [HttpPut("update-quantity")]
+        public async Task<ActionResult<ServiceResponse<bool>>> UpdateQuantity(CartItem cartItem)
+        {
+            var result = await cartService.UpdateQuantity(cartItem);
+            return Ok(result);
+        }
+
+        [HttpDelete("{productId}/{productTypeId}")]
+        public async Task<ActionResult<ServiceResponse<bool>>> RemoveItemFromCart(int productId, int productTypeId)
+        {
+            var result = await cartService.RemoveItemFromCart(productId, productTypeId);
             return Ok(result);
         }
 
