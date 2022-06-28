@@ -9,12 +9,16 @@ namespace OnDiSpotShop.Server.Services.AuthServices
     {
         private readonly DataContext context;
         private readonly IConfiguration config;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public AuthService(DataContext context, IConfiguration config)
+        public AuthService(DataContext context, IConfiguration config, IHttpContextAccessor httpContextAccessor)
         {
             this.context = context;
             this.config = config;
+            this.httpContextAccessor = httpContextAccessor;
         }
+
+        public int GetUserId() => int.Parse(httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
 
         public async Task<ServiceResponse<string>> Login(string email, string password)

@@ -6,16 +6,14 @@ namespace OnDiSpotShop.Server.Services.OrserServices
     {
         private readonly DataContext context;
         private readonly ICartService cartService;
-        private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IAuthService authService;
 
-        public OrderService(DataContext context, ICartService cartService, IHttpContextAccessor httpContextAccessor)
+        public OrderService(DataContext context, ICartService cartService, IAuthService authService)
         {
             this.context = context;
             this.cartService = cartService;
-            this.httpContextAccessor = httpContextAccessor;
+            this.authService = authService;
         }
-
-        private int GetUserId() => int.Parse(httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
         public async Task<ServiceResponse<bool>> PlaceOrder()
         {
@@ -34,14 +32,14 @@ namespace OnDiSpotShop.Server.Services.OrserServices
 
             var order = new Order
             {
-                UserId = GetUserId(),
+                UserId = authService.GetUserId(),
                 OrderDate = DateTime.Now,
                 TotalPrice = totalPrice,
                 OrderItems = orderItems
             };
 
             context.Orders.Add(order);
-            context.CartItems.RemoveRange(context.CartItems.Where(ci => ci.UserId == GetUserId()));
+            context.CartItems.RemoveRange(context.CartItems.Where(ci => ci.UserId == authService.GetUserId()));
             await context.SaveChangesAsync();
 
             return new ServiceResponse<bool> { Data = true };
