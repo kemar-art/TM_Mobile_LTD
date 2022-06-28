@@ -41,6 +41,7 @@ namespace OnDiSpotShop.Server.Services.OrserServices
             };
 
             context.Orders.Add(order);
+            context.CartItems.RemoveRange(context.CartItems.Where(ci => ci.UserId == GetUserId()));
             await context.SaveChangesAsync();
 
             return new ServiceResponse<bool> { Data = true };
