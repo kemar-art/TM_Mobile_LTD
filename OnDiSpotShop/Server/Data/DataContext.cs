@@ -137,7 +137,7 @@
                         CategoryId = 3,
                         Name = "Xbox",
                         Description = "The Xbox is a home video game console and the first installment in the Xbox series of video game consoles manufactured by Microsoft.",
-                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox-console.jpg",
+                        ImageUrl = "https://assets-prd.ignimgs.com/2021/11/12/unlocked520-blogroll-1636755236102.jpg",
                     },
                     new Product
                     {
@@ -145,7 +145,7 @@
                         CategoryId = 3,
                         Name = "Super Nintendo Entertainment System",
                         Description = "The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea.",
-                        ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ee/Nintendo-Super-Famicom-Set-FL.jpg",
+                        ImageUrl = "https://www.craftbymerlin.com/media/catalog/product/cache/60806c3b330fd240ef6156e64cd75b39/p/s/ps5-red-matte_1.png",
                     }
                     );
 

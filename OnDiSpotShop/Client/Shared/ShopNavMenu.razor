@@ -9,13 +9,14 @@
     </div>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-nav">
-        <div class="nav-item px-2">
+<div class="@NavMenuCssClass justify-content-end" @onclick="ToggleNavMenu">
+
+    <nav class="flex-nav justify-content-end">
+        @*<div class="nav-item px-2 justify-content-end">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                  Home
             </NavLink>
-        </div>
+        </div>*@
         @foreach (var category in CategoryService.Categories)
        {
             <div class="nav-item px-2">
@@ -24,6 +25,11 @@
                 </NavLink>
             </div>
        }
+       <div class="nav-item px-2 justify-content-end">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                 Home
+            </NavLink>
+        </div>
     </nav>
 </div>
 

@@ -74,9 +74,12 @@ namespace OnDiSpotShop.Server.Services.CartServices
             return new ServiceResponse<int> { Data = count };
         }
 
-        public async Task<ServiceResponse<List<CartProductResponse>>> GetDbCartProducts()
+        public async Task<ServiceResponse<List<CartProductResponse>>> GetDbCartProducts(int? userId = null)
         {
-            return await GetCartProducts(await context.CartItems.Where(ci => ci.UserId == authService.GetUserId()).ToListAsync());
+            if(userId == null)
+                userId = authService.GetUserId();
+
+            return await GetCartProducts(await context.CartItems.Where(ci => ci.UserId == userId).ToListAsync());
         }
 
         public async Task<ServiceResponse<bool>> AddToCart(CartItem cartItem)

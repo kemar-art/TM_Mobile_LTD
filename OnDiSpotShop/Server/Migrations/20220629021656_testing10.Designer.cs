@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnDiSpotShop.Server.Data;
 
@@ -11,9 +12,10 @@ using OnDiSpotShop.Server.Data;
 namespace OnDiSpotShop.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220629021656_testing10")]
+    partial class testing10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,7 +250,7 @@ namespace OnDiSpotShop.Server.Migrations
                             CategoryId = 3,
                             Description = "The Xbox is a home video game console and the first installment in the Xbox series of video game consoles manufactured by Microsoft.",
                             Featured = false,
-                            ImageUrl = "https://assets-prd.ignimgs.com/2021/11/12/unlocked520-blogroll-1636755236102.jpg",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox-console.jpg",
                             Name = "Xbox"
                         },
                         new
@@ -257,7 +259,7 @@ namespace OnDiSpotShop.Server.Migrations
                             CategoryId = 3,
                             Description = "The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea.",
                             Featured = false,
-                            ImageUrl = "https://www.craftbymerlin.com/media/catalog/product/cache/60806c3b330fd240ef6156e64cd75b39/p/s/ps5-red-matte_1.png",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ee/Nintendo-Super-Famicom-Set-FL.jpg",
                             Name = "Super Nintendo Entertainment System"
                         });
                 });

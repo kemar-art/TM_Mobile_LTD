@@ -20,6 +20,8 @@ namespace OnDiSpotShop.Server.Services.AuthServices
 
         public int GetUserId() => int.Parse(httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
+        public string GetUserEmail() => httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+
 
         public async Task<ServiceResponse<string>> Login(string email, string password)
         {
@@ -141,9 +143,9 @@ namespace OnDiSpotShop.Server.Services.AuthServices
             return new ServiceResponse<bool> { Data = true, Message = "Password has been changed." };
         }
 
-        /*public async Task<User> GetUserByEmail(string email)
+        public async Task<User> GetUserByEmail(string email)
         {
             return await context.Users.FirstOrDefaultAsync(u => u.Email.Equals(email));
-        }*/
+        }
     }
 }

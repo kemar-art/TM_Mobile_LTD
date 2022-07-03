@@ -8,6 +8,7 @@ global using OnDiSpotShop.Shared.Modles;
 global using OnDiSpotShop.Server.Services.CartServices;
 global using OnDiSpotShop.Server.Services.AuthServices;
 global using OnDiSpotShop.Server.Services.OrserServices;
+global using OnDiSpotShop.Server.Services.PaymentServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -33,6 +34,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {

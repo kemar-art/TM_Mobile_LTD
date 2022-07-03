@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnDiSpotShop.Server.Data;
 
@@ -11,9 +12,10 @@ using OnDiSpotShop.Server.Data;
 namespace OnDiSpotShop.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220629032746_12")]
+    partial class _12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,7 +169,7 @@ namespace OnDiSpotShop.Server.Migrations
                             CategoryId = 1,
                             Description = "The Hitchhiker's Guide to the Galaxy[note 1] (sometimes referred to as HG2G,[1] HHGTTG,[2] H2G2,[3] or tHGttG) is a comedy science fiction franchise created by Douglas Adams. Originally a 1978 radio comedy broadcast on BBC Radio 4, it was later adapted to other formats, including stage shows, novels, comic books, a 1981 TV series, a 1984 text-based computer game, and 2005 feature film.",
                             Featured = true,
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/b/bd/H2G2_UK_front_cover.jpg",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox-console.jpg",
                             Name = "The Hitchhiker's Guide to the Galaxy"
                         },
                         new
@@ -176,7 +178,7 @@ namespace OnDiSpotShop.Server.Migrations
                             CategoryId = 1,
                             Description = "Ready Player One is a 2011 science fiction novel, and the debut novel of American author Ernest Cline. The story, set in a dystopia in 2045, follows protagonist Wade Watts on his search for an Easter egg in a worldwide virtual reality game, the discovery of which would lead him to inherit the game creator's fortune. Cline sold the rights to publish the novel in June 2010, in a bidding war to the Crown Publishing Group (a division of Random House).[1] The book was published on August 16, 2011.[2] An audiobook was released the same day; it was narrated by Wil Wheaton, who was mentioned briefly in one of the chapters.[3][4]Ch. 20 In 2012, the book received an Alex Award from the Young Adult Library Services Association division of the American Library Association[5] and won the 2011 Prometheus Award.[6]",
                             Featured = false,
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/a/a4/Ready_Player_One_cover.jpg",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/82/NES-Console-Set.jpg",
                             Name = "Ready Player One"
                         },
                         new
@@ -248,7 +250,7 @@ namespace OnDiSpotShop.Server.Migrations
                             CategoryId = 3,
                             Description = "The Xbox is a home video game console and the first installment in the Xbox series of video game consoles manufactured by Microsoft.",
                             Featured = false,
-                            ImageUrl = "https://assets-prd.ignimgs.com/2021/11/12/unlocked520-blogroll-1636755236102.jpg",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/4/43/Xbox-console.jpg",
                             Name = "Xbox"
                         },
                         new
@@ -257,7 +259,7 @@ namespace OnDiSpotShop.Server.Migrations
                             CategoryId = 3,
                             Description = "The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea.",
                             Featured = false,
-                            ImageUrl = "https://www.craftbymerlin.com/media/catalog/product/cache/60806c3b330fd240ef6156e64cd75b39/p/s/ps5-red-matte_1.png",
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/82/NES-Console-Set.jpg",
                             Name = "Super Nintendo Entertainment System"
                         });
                 });

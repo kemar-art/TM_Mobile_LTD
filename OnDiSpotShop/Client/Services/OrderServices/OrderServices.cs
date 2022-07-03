@@ -14,15 +14,30 @@ namespace OnDiSpotShop.Client.Services.OrderServices
             this.authStateProvider = authStateProvider;
             this.navManager = navManager;
         }
-        public async Task PlaceOrder()
+
+        public async Task<OrderDetailsResponse> GetOrderDetails(int orderId)
+        {
+            var result = await httpClient.GetFromJsonAsync<ServiceResponse<OrderDetailsResponse>>($"api/order/{orderId}");
+            return result.Data;
+        }
+
+        public async Task<List<OrderOverviewResponse>> GetOrders()
+        {
+            var result = await httpClient.GetFromJsonAsync<ServiceResponse<List<OrderOverviewResponse>>>("api/order");
+            return result.Data;
+        }
+
+        public async Task<string> PlaceOrder()
         {
             if(await IsUserAuthenticated())
             {
-                await httpClient.PostAsync("api/order", null);
+                var result = await httpClient.PostAsync("api/payment/checkout", null);
+                var url = await result.Content.ReadAsStringAsync();
+                return url;
             }
             else
             {
-                navManager.NavigateTo("login");
+                return "login";
             }
         }
 

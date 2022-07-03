@@ -10,10 +10,10 @@
         transform: scale(1.5);
     }
 
-    .media-img-wrapper {
-        width: 200px;
-        text-align: center;
-    }
+.media-img-wrapper {
+    width: 200px;
+    text-align: center;
+}
 
 .page-selection {
     margin-right: 10px;
@@ -29,12 +29,12 @@
     flex: 1;
 }
 
-@media (max-width: 1024.98px){
-    .media{
+@media (max-width: 1024.98px) {
+    .media {
         flex-direction: column;
     }
 
-    .media-img-wrapper{
+    .media-img-wrapper {
         width: 100%;
         height: auto;
     }
