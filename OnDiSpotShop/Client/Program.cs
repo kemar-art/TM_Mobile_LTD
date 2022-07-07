@@ -10,6 +10,7 @@ global using OnDiSpotShop.Client.Services.CartServices;
 global using OnDiSpotShop.Client.Services.AuthServices;
 global using Microsoft.AspNetCore.Components.Authorization;
 global using OnDiSpotShop.Client.Services.OrderServices;
+global using OnDiSpotShop.Client.Services.AddressServices;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -26,6 +27,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStareProvider>();

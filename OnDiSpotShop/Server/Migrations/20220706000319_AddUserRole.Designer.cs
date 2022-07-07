@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnDiSpotShop.Server.Data;
 
@@ -11,9 +12,10 @@ using OnDiSpotShop.Server.Data;
 namespace OnDiSpotShop.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220706000319_AddUserRole")]
+    partial class AddUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,17 +98,11 @@ namespace OnDiSpotShop.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Visible")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -116,26 +112,20 @@ namespace OnDiSpotShop.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Deleted = false,
                             Name = "Books",
-                            Url = "books",
-                            Visible = true
+                            Url = "books"
                         },
                         new
                         {
                             Id = 2,
-                            Deleted = false,
                             Name = "Movies",
-                            Url = "movies",
-                            Visible = true
+                            Url = "movies"
                         },
                         new
                         {
                             Id = 3,
-                            Deleted = false,
                             Name = "Video Games",
-                            Url = "video-games",
-                            Visible = true
+                            Url = "video-games"
                         });
                 });
 
