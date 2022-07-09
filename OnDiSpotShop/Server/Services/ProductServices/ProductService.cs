@@ -3,10 +3,42 @@
     public class ProductService : IProductService
     {
         private readonly DataContext context;
+        private readonly IHttpContextAccessor httpContext;
 
-        public ProductService(DataContext context)
+        public ProductService(DataContext context, IHttpContextAccessor httpContext)
         {
             this.context = context;
+            this.httpContext = httpContext;
+        }
+
+        public async Task<ServiceResponse<Product>> CreateProduct(Product product)
+        {
+            foreach (var variant in product.Variants)
+            {
+                variant.ProductType = null;
+            }
+
+            context.Products.Add(product);
+            await context.SaveChangesAsync();
+            return new ServiceResponse<Product> { Data = product };
+        }
+
+        public async Task<ServiceResponse<bool>> DeleteProduct(int productId)
+        {
+            var dbProduct = await context.Products.FindAsync(productId);
+            if (dbProduct == null)
+            {
+                return new ServiceResponse<bool>
+                {
+                    Success = false,
+                    Data = false,
+                    Message = "No Product Found."
+                };
+            }
+
+            dbProduct.Deleted = true;
+            await context.SaveChangesAsync();
+            return new ServiceResponse<bool> { Data = true};
         }
 
         public async Task<ServiceResponse<List<Product>>> GetAdminProducts()
@@ -40,10 +72,23 @@
         public async Task<ServiceResponse<Product>> GetProductAsync(int productId)
         {
             var response = new ServiceResponse<Product>();
-            var product = await context.Products
+            Product product = null;
+
+            if (httpContext.HttpContext.User.IsInRole("Admin"))
+            {
+                product = await context.Products
+                .Include(p => p.Variants.Where(v => !v.Deleted))
+                .ThenInclude(v => v.ProductType)
+                .FirstOrDefaultAsync(p => p.Id == productId && !p.Deleted);
+            }
+            else
+            {
+                product = await context.Products
                 .Include(p => p.Variants.Where(v => v.Visible && !v.Deleted))
                 .ThenInclude(v => v.ProductType)
                 .FirstOrDefaultAsync(p => p.Id == productId && !p.Deleted && p.Visible);
+            }
+
             if (product == null)
             {
                 response.Success = false;
@@ -142,6 +187,48 @@
             };
 
             return response;
+        }
+
+        public async Task<ServiceResponse<Product>> UpdateProduct(Product product)
+        {
+            var dbProduct = await context.Products.FindAsync(product.Id);
+            if (dbProduct == null)
+            {
+                return new ServiceResponse<Product>
+                {
+                    Success = false,
+                    Message = "No Product Found."
+                };
+            }
+
+            dbProduct.Name = product.Name;
+            dbProduct.Description = product.Description;
+            dbProduct.ImageUrl = product.ImageUrl;
+            dbProduct.CategoryId = product.CategoryId;
+            dbProduct.Visible = product.Visible;
+            dbProduct.Featured = product.Featured;
+
+            foreach (var varint in product.Variants)
+            {
+                var dbVarint = await context.ProductVariants.SingleOrDefaultAsync(v => v.ProductId == varint.ProductId
+                    && v.ProductTypeId == varint.ProductTypeId);
+                if (dbVarint == null)
+                {
+                    varint.ProductType = null;
+                    context.ProductVariants.Add(varint);
+                }
+                else
+                {
+                    dbVarint.ProductTypeId = varint.ProductTypeId;
+                    dbVarint.Price = varint.Price;
+                    dbVarint.OriginalPrice = varint.OriginalPrice;
+                    dbVarint.Visible = varint.Visible;
+                    dbVarint.Deleted = varint.Deleted;
+                }
+            }
+
+            await context.SaveChangesAsync();
+            return new ServiceResponse<Product> { Data = product };
         }
 
         private async Task<List<Product>> FindProductsBySearchText(string searchText)
