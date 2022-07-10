@@ -37,7 +37,7 @@ namespace OnDiSpotShop.Server.Controllers
             return Ok(result);
         }
 
-        [HttpDelete, Authorize(Roles = "Admin")]
+        [HttpDelete("{id}"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<ServiceResponse<bool>>> DeleteProduct(int id)
         {
             var result = await productService.DeleteProduct(id);
@@ -52,7 +52,7 @@ namespace OnDiSpotShop.Server.Controllers
         }
 
         [HttpGet("{productId}")]
-        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProduct(int productId)
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
         {
             var result = await productService.GetProductAsync(productId);
             return Ok(result);

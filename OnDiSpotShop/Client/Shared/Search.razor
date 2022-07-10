@@ -1,4 +1,4 @@
-﻿@inject NavigationManager navigate
+﻿@inject NavigationManager navManager
 @inject IProductService Productservice
 
 <div class="input-group">
@@ -39,7 +39,7 @@
 
     public void SearchProducts()
     {
-        navigate.NavigateTo($"search/{searchText}/1");
+        navManager.NavigateTo($"search/{searchText}/1");
     }
 
     public async Task HandleSearch(KeyboardEventArgs args)

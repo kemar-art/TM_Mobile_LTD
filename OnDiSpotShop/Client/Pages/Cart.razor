@@ -39,13 +39,6 @@ else
             Total (@cartProducts.Count): $@cartProducts.Sum(product => @product.Price * product.Quantity)
         </div>
     </div>
-    @*f (isAuthenticated)
-    {
-        <div>
-            <h5>Delivery Address</h5>
-            <AddressForm />
-        </div>
-    }*@
     <button @onclick="PlaceOrder" class="btn alert-success float-end mt-1">Checkout</button>
 }
 
@@ -88,9 +81,5 @@ else
     {
         string url = await OrderService.PlaceOrder();
         navManager.NavigateTo(url);
-
-        /*await CartService.GetCartItemsCount();
-        orderPlaced = true;*/
-
     }
 }

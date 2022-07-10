@@ -14,13 +14,6 @@ namespace OnDiSpotShop.Server.Controllers
             this.orderService = orderService;
         }
 
-        /*[HttpPost]
-        public async Task<ActionResult<ServiceResponse<bool>>> PlaceOrder()
-        {
-            var result = await orderService.PlaceOrder();
-            return Ok(result);
-        }*/
-
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<OrderOverviewResponse>>>> GetOrders()
         {

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnDiSpotShop.Server.Data;
 
@@ -11,9 +12,10 @@ using OnDiSpotShop.Server.Data;
 namespace OnDiSpotShop.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220710161856_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,28 +139,6 @@ namespace OnDiSpotShop.Server.Migrations
                             Url = "video-games",
                             Visible = true
                         });
-                });
-
-            modelBuilder.Entity("OnDiSpotShop.Shared.Modles.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Data")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("OnDiSpotShop.Shared.Modles.Order", b =>
@@ -663,13 +643,6 @@ namespace OnDiSpotShop.Server.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OnDiSpotShop.Shared.Modles.Image", b =>
-                {
-                    b.HasOne("OnDiSpotShop.Shared.Modles.Product", null)
-                        .WithMany("Images")
-                        .HasForeignKey("ProductId");
-                });
-
             modelBuilder.Entity("OnDiSpotShop.Shared.Modles.OrderItem", b =>
                 {
                     b.HasOne("OnDiSpotShop.Shared.Modles.Order", "Order")
@@ -734,8 +707,6 @@ namespace OnDiSpotShop.Server.Migrations
 
             modelBuilder.Entity("OnDiSpotShop.Shared.Modles.Product", b =>
                 {
-                    b.Navigation("Images");
-
                     b.Navigation("Variants");
                 });
 

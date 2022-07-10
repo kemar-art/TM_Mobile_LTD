@@ -10,37 +10,38 @@
 else
 {
 <ul class="list-unstyled">
-    @foreach (var product in ProductService.Products)
-    {
-        <li class="media my-3">
-            <div class="media-img-wrapper mr-2">
-                <a href="/product/@product.Id">
-                    <img class="media-img" src="@product.ImageUrl" alt="@product.Name">
-                </a>
-            </div>
-            <div class="media-body">
-                <a href="/product/@product.Id">
-                    <h4 class="mb-0">@product.Name</h4>
-                </a>
-                <p>@product.Description</p>
-                <h5 class="price">
-                    @GetPriceText(product)
-                </h5>
-            </div>
-        </li>
-    }
-    </ul>
-
-    for (var i = 1; i <= ProductService.PageCount; i++)
-    {
-        <a class="btn
-            @(i == ProductService.CurrentPage ? "btn-dark" : "btn-online-dark")
-            page-selection"
-            href="/search/@ProductService.LastSearchText/@i"
-            >
-            @i
-        </a>
-    }
+        @foreach (var product in ProductService.Products)
+        {
+            <li class="media my-3">
+                <div class="media-img-wrapper mr-2">
+                    <a href="/product/@product.Id">
+                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                        {
+                            <img class="media-img" src="@product.ImageUrl" alt="@product.Name" />
+                        }
+                        else if (product.Images.Count > 0)
+                        {
+                            <img class="media-img" src="@product.Images[0].Data" alt="@product.Name" />
+                        }
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="/product/@product.Id">
+                        <h4 class="mb-0">@product.Name</h4>
+                    </a>
+                    <p>@product.Description</p>
+                    <h5 class="price">
+                        @GetPriceText(product)
+                    </h5>
+                </div>
+            </li>
+        }
+</ul>
+     for (var i = 1; i <= ProductService.PageCount; i++)
+     {
+         <a class="btn @(i == ProductService.CurrentPage ? "btn-info" : "btn-outline-info") age-selection"
+         href="/search/@ProductService.LastSearchText/@i">@i</a>
+     }
 }
 
 @code {
