@@ -13,5 +13,6 @@ namespace OnDiSpotShop.Shared.Modles
         public string Password { get; set; } = String.Empty;
         [Compare("Password", ErrorMessage = "The Password on not match")]
         public string ConfirmPassword { get; set; } = String.Empty;
+
     }
 }

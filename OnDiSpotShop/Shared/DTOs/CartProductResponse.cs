@@ -1,6 +1,8 @@
-﻿namespace OnDiSpotShop.Shared.DTOs
+﻿using OnDiSpotShop.Shared.Modles;
+
+namespace OnDiSpotShop.Shared.DTOs
 {
-    public class CartProductResponse
+    public class CartProductResponse : Product
     {
         public int ProductId { get; set; }
         public string Name { get; set; } = string.Empty;

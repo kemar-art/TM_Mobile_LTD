@@ -5,12 +5,14 @@
         private readonly ILocalStorageService localStorage;
         private readonly HttpClient httpClient;
         private readonly IAuthService authService;
+        private readonly IProductService productService;
 
-        public CartService(ILocalStorageService localStorage, HttpClient httpClient, IAuthService authService)
+        public CartService(ILocalStorageService localStorage, HttpClient httpClient, IAuthService authService, IProductService productService)
         {
             this.localStorage = localStorage;
             this.httpClient = httpClient;
             this.authService = authService;
+            this.productService = productService;
         }
         public event Action Onchange;
 
@@ -32,6 +34,10 @@
                 if (sameItem == null)
                 {
                     cart.Add(cartItem);
+                }
+                else if (sameItem.ProductTypeId == cartItem.ProductTypeId)
+                {
+                    sameItem.Quantity = cartItem.Quantity;
                 }
                 else
                 {
