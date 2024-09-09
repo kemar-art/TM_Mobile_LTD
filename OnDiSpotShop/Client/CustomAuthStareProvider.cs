@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+﻿
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text.Json;
@@ -17,7 +19,7 @@ namespace OnDiSpotShop.Client
         }
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            string authToken = await localStorageService.GetItemAsStringAsync("authToken");
+            string authToken = await localStorageService.GetItemAsync<string>("authToken");
             var identity = new ClaimsIdentity();
             httpClient.DefaultRequestHeaders.Authorization = null;
 

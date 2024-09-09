@@ -1,4 +1,6 @@
-﻿namespace OnDiSpotShop.Client.Services.AuthServices
+﻿using Microsoft.AspNetCore.Components.Authorization;
+
+namespace OnDiSpotShop.Client.Services.AuthServices
 {
     public class AuthService : IAuthService
     {

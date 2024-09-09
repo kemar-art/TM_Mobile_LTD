@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace OnDiSpotShop.Client.Services.OrderServices
 {
@@ -29,7 +30,7 @@ namespace OnDiSpotShop.Client.Services.OrderServices
 
         public async Task<string> PlaceOrder()
         {
-            if(await IsUserAuthenticated())
+            if (await IsUserAuthenticated())
             {
                 var result = await httpClient.PostAsync("api/payment/checkout", null);
                 var url = await result.Content.ReadAsStringAsync();

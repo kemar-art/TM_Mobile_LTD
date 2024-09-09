@@ -1,11 +1,12 @@
 ﻿@page "/profile"
+@using Microsoft.AspNetCore.Components.Authorization
 @inject IAuthService AuthService
 @attribute [Authorize]
 
 <AuthorizeView>
     <div class="row d-flex justify-content-center align-items-center testing-1">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-            <h3>Hi! You're logged in with <i>@context.User.Identity.Name</i>.</h3>
+            @* <h3>Hi! You're logged in with <i>@context.User.Identity.Name</i>.</h3> *@
         </div>
         
     </div>
